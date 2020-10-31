@@ -1,0 +1,12 @@
+FROM zshift/dasm
+
+WORKDIR /home/stella
+
+# Install stella
+RUN wget https://github.com/stella-emu/stella/releases/download/6.3/stella_6.3-1_amd64.deb 2>/dev/null && \
+    dpkg -i ./stella_6.3-1_amd64.deb; \
+    apt-get -f install -y && \
+    dpkg -i ./stella_6.3-1_amd64.deb && \
+    apt-get install -y stella
+
+ENTRYPOINT [ "stella" ]
